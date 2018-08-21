@@ -8,22 +8,52 @@ class Api::GamesController < ApplicationController
     def create
         
         game = Game.new(game_params)
+        player1 = User.find_by(username: params[:player1])
+        player2 = User.find_by(username: params[:player2])
+        
 
         if game
-           render json: game, status: 200
+            
+            if player1 && player2
+                game.users << player1
+                game.users << player2
+            end
+
+            render json: game, status: 200
         else
             render json: game.erros, status: 400
         end
 
     end
 
-    def show 
+    def show
+
+        if @game
+            render json: @game, status: 200
+        else
+            render json: @game.erros, status: 400
+        end
+    
     end
 
     def update
+
+        if @game.update(game_params)
+            render json: @game, status: 200
+        else
+            render json: @game.erros, status: 400
+        end
+
     end
 
     def destroy
+
+        if @game.destroy(game_params)
+            render json: @game, status: 200
+        else
+            render json: @game.erros, status: 400
+        end
+
     end
 
     private
