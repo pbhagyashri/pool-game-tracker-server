@@ -20,6 +20,7 @@ class Api::GamesController < ApplicationController
 
             if game.winner 
                 if game.winner && player1.username
+                
                     player1.victories = player1.victories += 1
                     player1.save
                 
