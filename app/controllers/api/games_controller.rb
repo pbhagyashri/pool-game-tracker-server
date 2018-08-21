@@ -8,18 +8,32 @@ class Api::GamesController < ApplicationController
     def create
         
         game = Game.new(game_params)
-        player1 = User.find_by(username: params[:player1])
-        player2 = User.find_by(username: params[:player2])
-        
+        player1 = User.find_by(username: params[:game][:player1])
+        player2 = User.find_by(username: params[:game][:player2])
 
-        if game
+        if game.save
             
             if player1 && player2
                 game.users << player1
                 game.users << player2
             end
 
+            if game.winner 
+                if game.winner && player1.username
+                    binding.pry
+                    player1.victories = player1.victories += 1
+                    player1.save
+                
+                elsif game.winner && player2.username
+                    binding.pry
+                    player2.victories = player2.victories += 1
+                    player2.save
+                
+                end
+            end
+            
             render json: game, status: 200
+
         else
             render json: game.erros, status: 400
         end
