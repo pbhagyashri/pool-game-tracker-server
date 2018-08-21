@@ -20,12 +20,10 @@ class Api::GamesController < ApplicationController
 
             if game.winner 
                 if game.winner && player1.username
-                    binding.pry
                     player1.victories = player1.victories += 1
                     player1.save
                 
                 elsif game.winner && player2.username
-                    binding.pry
                     player2.victories = player2.victories += 1
                     player2.save
                 

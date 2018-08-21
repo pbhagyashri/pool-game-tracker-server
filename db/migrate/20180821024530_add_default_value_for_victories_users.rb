@@ -1,0 +1,5 @@
+class AddDefaultValueForVictoriesUsers < ActiveRecord::Migration[5.1]
+  def change
+    change_column :users, :victories, :integer, :default => 0
+  end
+end

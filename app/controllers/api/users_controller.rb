@@ -1,3 +1,4 @@
+require 'auth'
 class Api::UsersController < ApplicationController
     
     def show
