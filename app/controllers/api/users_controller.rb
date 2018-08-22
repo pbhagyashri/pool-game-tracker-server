@@ -12,7 +12,7 @@ class Api::UsersController < ApplicationController
             token = Auth.create_token(user)
             returned_user = Auth.decode_token(token)
 
-            render json: {username: user.username, id: user.id, email: user.email, token: token}, status: 200
+            render json: {username: user.username, token: token}, status: 200
         else
             render json: {message: user.errors}, status: 400
           
