@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
     def login
 
         #take user's email and password from client and find user with the email, and if user is #found. authenticate with #password.  if user is authenticated, create a token for user and #decode it and send back user's details
-    
+
         user = User.find_by(email: params[:user][:email])
 
         if user && user.authenticate(params[:user][:password])
