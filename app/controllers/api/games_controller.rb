@@ -6,31 +6,16 @@ class Api::GamesController < ApplicationController
     end
 
     def create
-        
         game = Game.new(game_params)
         game.date = Time.now.strftime("%Y-%d-%m %H:%M")
-
-        player1 = User.find_by(username: params[:game][:player1])
-        player2 = User.find_by(username: params[:game][:player2])
-
+        
         if game.save
-
-            if game.winner 
-                if game.winner == player1.username
-                    player1.victories = player1.victories += 1
-                    player1.games << game
-                    player1.save
-                
-                elsif game.winner == player2.username
-                    player2.victories = player2.victories += 1
-                    player2.games << game
-                    player2.save
-                
-                end
-            end
+            
+            winner = User.find_by(username: game.winner)
+            winner.games << game
+            winner.save
             
             render json: game, status: 200
-
         else
             render json: game.erros, status: 400
         end
