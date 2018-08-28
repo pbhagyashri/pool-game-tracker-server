@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
         render json: users
     
     end
-
+    
     def sorted_users
     
         users = User.all
@@ -34,7 +34,8 @@ class Api::UsersController < ApplicationController
 
             render json: {username: user.username, token: token}, status: 200
         else
-            render json: {message: user.errors}, status: 400
+            
+            render json: user.errors.messages, status: 400
           
         end
     
