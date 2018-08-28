@@ -6,12 +6,14 @@ class Api::GamesController < ApplicationController
     end
 
     def create
+
         game = Game.new(game_params)
         game.date = Time.now.strftime("%Y-%d-%m %H:%M")
         
         if game.save
             
             winner = User.find_by(username: game.winner)
+            winner.victories += 1
             winner.games << game
             winner.save
             

@@ -2,10 +2,23 @@ require 'auth'
 class Api::UsersController < ApplicationController
 
     def index 
-        
-        users = User.all
 
+        users = User.all
         render json: users
+    
+    end
+
+    def sorted_users
+    
+        users = User.all
+        sorted_users = users.sort_by{|user| user.victories}.reverse
+        
+        if sorted_users
+            render json: sorted_users
+        else
+            render json: {message: "No leaders found"}, status: 400
+        end
+        
     end
     
     def show
