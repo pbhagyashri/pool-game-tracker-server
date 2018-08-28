@@ -1,24 +1,20 @@
-# README
+Pool Game Tracker Server - 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Technologies Used - Ruby on Rails
 
-Things you may want to cover:
+Gems Used - 
+bcrypt for encrypting user's passwords., 
+jwt for client side authentication. 
 
-* Ruby version
+Instructions - 
 
-* System dependencies
+Please clone this repo and and pool-game-tracker-client (link below).
 
-* Configuration
+https://github.com/pbhagyashri/pool-game-tracker-client
 
-* Database creation
+Starting the server -
 
-* Database initialization
+For pool-game-tracker-client using yarn start  
+For pool-game-tracker-server using rails s -p "your favourite port"
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After you clone pool-game-tracker-server, Please run the migrations using, rake db:migrate
